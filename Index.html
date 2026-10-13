@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRYPTO TRADE</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#050b14;color:white;
+ font-family:Arial,sans-serif;text-align:center;
+ overflow-x:hidden
+}
+.hero{
+ min-height:100vh;padding:24px 14px;
+ background:radial-gradient(ellipse at top,#123c3c,#050b14 70%);
+ position:relative;overflow:hidden
+}
+.brand{
+ font-size:30px;font-weight:900;letter-spacing:2px;
+ color:#35f5a0;text-shadow:0 0 18px #00ff9955
+}
+.tag{color:#b7c8d5;margin-top:9px;font-size:13px}
+.chart{
+ height:155px;position:relative;margin:20px 0;
+ overflow:hidden;border-bottom:1px solid #24463f
+}
+.chart svg{width:100%;height:100%;overflow:visible}
+.line{
+ fill:none;stroke:#32f5a0;stroke-width:3;
+ stroke-linecap:round;stroke-linejoin:round;
+ stroke-dasharray:700;stroke-dashoffset:700;
+ animation:draw 4s linear infinite
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+.candle{
+ position:absolute;width:5px;background:#31e99a;
+ animation:float 1.6s ease-in-out infinite alternate;
+ box-shadow:0 0 8px #20d98b55
+}
+.candle:after{
+ content:"";position:absolute;width:1px;height:150%;
+ background:inherit;left:2px;top:-25%
+}
+@keyframes float{
+ from{transform:translateY(10px)}
+ to{transform:translateY(-13px)}
+}
+h1{font-size:31px;line-height:1.25;margin:15px 0}
+.green{color:#39f5a1}
+.sub{font-size:15px;line-height:1.7;color:#c4d0dc}
+.panel{
+ max-width:430px;margin:20px auto;padding:23px 18px;
+ background:#0c1928;border:1px solid #23664f;
+ border-radius:20px;box-shadow:0 0 25px #00ff9910
+}
+.label{font-size:13px;color:#b4c7d6}
+.amount{
+ font-size:34px;font-weight:900;color:#42ffac;
+ margin:14px 0;text-shadow:0 0 15px #25f6a055
+}
+.progress{
+ height:5px;background:#1b302e;border-radius:10px;
+ overflow:hidden;margin:15px 0
+}
+.progress span{
+ display:block;height:100%;width:0;background:#36f5a0;
+ animation:progress 2s linear infinite
+}
+@keyframes progress{to{width:100%}}
+button{
+ width:100%;padding:16px;border:0;border-radius:12px;
+ background:#30eda0;color:#04130c;font-size:17px;
+ font-weight:900;cursor:pointer
+}
+.small{font-size:12px;color:#91a6b8;line-height:1.7}
+footer{padding:18px;font-size:12px;color:#8fa5b7}
+</style>
+</head>
+<body>
+<div class="hero">
+ <div class="brand">₿ CRYPTO TRADE</div>
+ <div class="tag">SMART ANALYSIS • MARKET UPDATES</div>
+
+ <div class="chart" id="chart">
+  <svg viewBox="0 0 350 150" preserveAspectRatio="none">
+   <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+     <stop offset="0%" stop-color="#32f5a0" stop-opacity=".35"/>
+     <stop offset="100%" stop-color="#32f5a0" stop-opacity="0"/>
+    </linearGradient>
+   </defs>
+   <path d="M0 130 L25 115 L45 124 L70 90 L95 105
+   L120 70 L145 88 L175 53 L200 65 L225 37
+   L250 55 L280 22 L310 32 L350 5 L350 150 L0 150Z"
+   fill="url(#fade)"/>
+   <path class="line" d="M0 130 L25 115 L45 124 L70 90
+   L95 105 L120 70 L145 88 L175 53 L200 65
+   L225 37 L250 55 L280 22 L310 32 L350 5"/>
+  </svg>
+ </div>
+
+ <h1>TRADE SMARTER.<br>
+ <span class="green">THINK BIGGER.</span></h1>
+ <div class="sub">
+  Crypto market updates &amp; trading education.<br>
+  क्रिप्टो मार्केट अपडेट्स और ट्रेडिंग की जानकारी।
+ </div>
+
+ <div class="panel">
+  <div class="label">MARKET OPPORTUNITY • संभावित अवसर</div>
+  <div class="amount" id="amount">₹199+</div>
+  <div class="progress"><span></span></div>
+  <p class="sub">
+   Want to learn about potential 5x–10x opportunities?<br>
+   क्या आप 5x–10x रिटर्न की संभावनाओं के बारे में सीखना चाहते हैं?
+  </p>
+  <button onclick="joinTelegram()">
+   ✈ JOIN TELEGRAM • अभी JOIN करें
+  </button>
+  <p class="small">
+   Learn. Analyze. Trade responsibly.<br>
+   सीखें, विश्लेषण करें और जिम्मेदारी से ट्रेड करें।
+  </p>
+ </div>
+
+ <p class="small">
+  ⚠️ The chance of winning is 99.99% and if you lose, your money will be refunde.<br>
+ जीतने का चान्स 99.99% है और अगर आपका 💹  Loss हुआ तो आपका Money Refund कर दिया जाएगा<footer>CRYPTO TRADE • Trade With Knowledge</footer>
+
+<script>
+const amounts=["₹4999+"," + ₹7999 ","₹9999+","₹11999+","₹49999+"];
+let index=0;
+setInterval(()=>{
+ index=(index+1)%amounts.length;
+ document.getElementById("amount").textContent=amounts[index];
+},1300);
+
+const chart=document.getElementById("chart");
+for(let i=0;i<32;i++){
+ const c=document.createElement("span");
+ c.className="candle";
+ c.style.left=(i*3.2)+"%";
+ c.style.bottom=(Math.random()*65)+"px";
+ c.style.height=(12+Math.random()*45)+"px";
+ c.style.animationDelay=(Math.random()*2)+"s";
+ c.style.opacity=".65";
+ chart.appendChild(c);
+}
+
+function joinTelegram(){
+ window.open("https://t.me/YourChannel","_blank");
+}
+</script>
+</body>
+  </html>
